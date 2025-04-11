@@ -161,11 +161,13 @@ public class FrConUsuario extends javax.swing.JDialog {
     for (Usuario usu : listaUsuarios) {
       //cria um array onde cada posição é o valor das colunas da grade
       Object[] linha = {
-        usu.getPkUsuario(), //coluna 0
+        usu.getId_cliente(), //coluna 0
         usu.getNome(), //coluna 1
-        usu.getEmail(), //coluna 2
-        Utils.converterDateToString(usu.getDataNasc()), //coluna 3
-        usu.ativoToString() //coluna 4
+        usu.getCpf(), //coluna 2
+        usu.getTelefone(),//coluna 3
+        usu.getEmail(), //coluna 4
+        Utils.converterDateToString(usu.getDataNasc()), //coluna 5
+        usu.ativoToString() //coluna 6
       };
       
       //Adiciona o array com os dados do usuário na grade

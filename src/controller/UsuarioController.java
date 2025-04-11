@@ -139,6 +139,29 @@ public class UsuarioController {
         }
         return false;
     }
+    
+    public boolean alterarSenha(Usuario u) {
+        String sql = "UPDATE cliente SET senha = ? where cpf = ?";
+
+        
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        PreparedStatement comando = null;
+
+        try {
+            comando = gerenciador.prepararComando(sql);
+
+            comando.setString(1, u.getSenha());
+            comando.setString(2, u.getCpf());
+
+              
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            gerenciador.fecharConexao(comando);
+        }
+        return false;
+    }
+
 
     public Usuario buscarPorPk(int id_cliente) {
         //Guarda o sql

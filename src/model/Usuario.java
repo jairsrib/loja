@@ -21,7 +21,7 @@ public class Usuario {
 
     ;
   
-  public Usuario(int id_cliente, String nome, String email, String senha, Date dataNasc, boolean ativo) {
+  public Usuario(int id_cliente, String nome, String cpf, String telefone, String email, String senha, Date dataNasc, boolean ativo) {
         this.id_cliente = id_cliente;
         this.nome = nome;
         this.cpf = cpf;
