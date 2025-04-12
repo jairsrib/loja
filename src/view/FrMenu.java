@@ -34,11 +34,12 @@ public class FrMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblImagem = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         meCadastro = new javax.swing.JMenu();
         miCadUsuario = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        miCadRoupa = new javax.swing.JMenuItem();
+        miCadTamanho = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
         meConsulta = new javax.swing.JMenu();
         miConUsuario = new javax.swing.JMenuItem();
@@ -53,11 +54,12 @@ public class FrMenu extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-        jPanel1.add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 124, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 100)); // NOI18N
+        jLabel1.setText("Rene");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 310, 90));
 
         barMenu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -72,8 +74,21 @@ public class FrMenu extends javax.swing.JFrame {
         });
         meCadastro.add(miCadUsuario);
 
-        jMenuItem2.setText("???");
-        meCadastro.add(jMenuItem2);
+        miCadRoupa.setText("Roupa");
+        miCadRoupa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miCadRoupaMouseClicked(evt);
+            }
+        });
+        meCadastro.add(miCadRoupa);
+
+        miCadTamanho.setText("Tamanho");
+        miCadTamanho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miCadTamanhoMouseClicked(evt);
+            }
+        });
+        meCadastro.add(miCadTamanho);
 
         miSair.setText("Sair");
         miSair.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +161,7 @@ public class FrMenu extends javax.swing.JFrame {
   }//GEN-LAST:event_jMenuItem3ActionPerformed
 
   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    URL caminhoImagem = getClass().getResource("/images/logo_mini.png");
+    URL caminhoImagem = getClass().getResource("/images/menu.png");
 
     ImageIcon icon = new ImageIcon(caminhoImagem);
 
@@ -171,6 +186,14 @@ public class FrMenu extends javax.swing.JFrame {
     
     telaSobre.setVisible(true);
   }//GEN-LAST:event_meSobreMouseClicked
+
+    private void miCadRoupaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miCadRoupaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miCadRoupaMouseClicked
+
+    private void miCadTamanhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miCadTamanhoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miCadTamanhoMouseClicked
 
   /**
    * @param args the command line arguments
@@ -209,13 +232,14 @@ public class FrMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblImagem;
     private javax.swing.JMenu meCadastro;
     private javax.swing.JMenu meConsulta;
     private javax.swing.JMenu meSobre;
+    private javax.swing.JMenuItem miCadRoupa;
+    private javax.swing.JMenuItem miCadTamanho;
     private javax.swing.JMenuItem miCadUsuario;
     private javax.swing.JMenuItem miConUsuario;
     private javax.swing.JMenuItem miSair;

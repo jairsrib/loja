@@ -36,35 +36,19 @@ public class FrLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         lblBarra2 = new javax.swing.JPanel();
         edtEmail = new javax.swing.JTextField();
         edtSenha = new javax.swing.JPasswordField();
         lblEmail = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
-        btnLogar = new javax.swing.JButton();
-        lblImagem = new javax.swing.JLabel();
+        btnEntrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblAutenticacao = new javax.swing.JLabel();
         lblBarra1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        btnEsqueciSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autenticação");
@@ -78,7 +62,7 @@ public class FrLogin extends javax.swing.JFrame {
         lblBarra2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         edtEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblBarra2.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 400, -1));
+        lblBarra2.add(edtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 400, -1));
 
         edtSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         edtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -86,35 +70,31 @@ public class FrLogin extends javax.swing.JFrame {
                 edtSenhaKeyPressed(evt);
             }
         });
-        lblBarra2.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 400, -1));
+        lblBarra2.add(edtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 400, -1));
 
         lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(51, 51, 51));
         lblEmail.setText("*Email");
-        lblBarra2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        lblBarra2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSenha.setForeground(new java.awt.Color(51, 51, 51));
         lblSenha.setText("*Senha");
-        lblBarra2.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        lblBarra2.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
-        btnLogar.setBackground(new java.awt.Color(0, 0, 0));
-        btnLogar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnLogar.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogar.setText("ENTRAR");
-        btnLogar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51), 2));
-        btnLogar.setBorderPainted(false);
-        btnLogar.setContentAreaFilled(false);
-        btnLogar.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        btnLogar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEntrar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEntrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setText("ENTRAR");
+        btnEntrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51), 2));
+        btnEntrar.setBorderPainted(false);
+        btnEntrar.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLogarMouseClicked(evt);
+                btnEntrarMouseClicked(evt);
             }
         });
-        lblBarra2.add(btnLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 400, 40));
-
-        lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
-        lblBarra2.add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 33, -1, -1));
+        lblBarra2.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 400, 40));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -127,59 +107,53 @@ public class FrLogin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(101, 101, 101)
                 .addComponent(lblAutenticacao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(22, 22, 22)
                 .addComponent(lblAutenticacao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         lblBarra2.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, -1));
 
         lblBarra1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblBarra1.setText("____________________");
-        lblBarra2.add(lblBarra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        lblBarra2.add(lblBarra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("____________________");
-        lblBarra2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, -1, -1));
+        lblBarra2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         jLabel1.setText("ou");
-        lblBarra2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 36, -1));
+        lblBarra2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 36, -1));
 
         btnCadastro.setBackground(new java.awt.Color(0, 0, 0));
         btnCadastro.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastro.setText("QUERO ME CADASTRAR");
         btnCadastro.setBorderPainted(false);
-        btnCadastro.setContentAreaFilled(false);
         btnCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCadastroMouseClicked(evt);
             }
         });
-        lblBarra2.add(btnCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 400, 49));
+        lblBarra2.add(btnCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 400, 49));
 
-        jButton1.setText("Esqueci minha senha");
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEsqueciSenha.setText("Esqueci minha senha");
+        btnEsqueciSenha.setContentAreaFilled(false);
+        btnEsqueciSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnEsqueciSenhaMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        lblBarra2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 180, 20));
+        lblBarra2.add(btnEsqueciSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 180, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,18 +163,18 @@ public class FrLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBarra2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblBarra2, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  private void btnLogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogarMouseClicked
+  private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
     realizarLogin();
-  }//GEN-LAST:event_btnLogarMouseClicked
+  }//GEN-LAST:event_btnEntrarMouseClicked
 
   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    URL caminhoImagem = getClass().getResource("/images/logo_mini.png");
+    URL caminhoImagem = getClass().getResource("/images/login.png");
 
     ImageIcon icon = new ImageIcon(caminhoImagem);
 
@@ -224,32 +198,9 @@ public class FrLogin extends javax.swing.JFrame {
     telaCadastro.setVisible(true);
     }//GEN-LAST:event_btnCadastroMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEsqueciSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEsqueciSenhaMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-//Verificar se tem uma linha da grade selecionada
-    if (tblUsuarios.getSelectedRow() != -1) {
-      //Se tiver pegar o código do usuário da grade
-      int linhaSelecionada = tblUsuarios.getSelectedRow();
-      String textoCelula = tblUsuarios.getValueAt(linhaSelecionada, 0).toString();
-      
-      //converter o texto da célula em inteiro
-      int pkUsuario = Integer.parseInt(textoCelula);
-           
-      //com o pkUsuario eu vou criar uma tela de  
-      //alteração passando o pkUsuario
-      
-      //Essa tela irá carregar os dados desse usuário
-      //para poder alterar     
-      FrAltUsuario telaAlt = new FrAltUsuario(null,rootPaneCheckingEnabled, pkUsuario);
-            
-      telaAlt.setVisible(true);
-      
-      pesquisar();
-    }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnEsqueciSenhaMouseClicked
 
   private void realizarLogin() {
     String email = edtEmail.getText();
@@ -320,20 +271,17 @@ public class FrLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
-    private javax.swing.JButton btnLogar;
+    private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnEsqueciSenha;
     private javax.swing.JTextField edtEmail;
     private javax.swing.JPasswordField edtSenha;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAutenticacao;
     private javax.swing.JLabel lblBarra1;
     private javax.swing.JPanel lblBarra2;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblImagem;
     private javax.swing.JLabel lblSenha;
     // End of variables declaration//GEN-END:variables
 }
