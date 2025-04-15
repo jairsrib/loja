@@ -5,10 +5,12 @@
  */
 package view;
 
-import controller.UsuarioController;
+import controller.TamanhoController;
+import java.net.URL;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import model.Usuario;
+import model.Tamanho;
 import utils.Utils;
 
 /**
@@ -23,6 +25,8 @@ public class FrCadTamanho extends javax.swing.JDialog {
     public FrCadTamanho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+            this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -38,22 +42,25 @@ public class FrCadTamanho extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        edtNome = new javax.swing.JTextField();
+        edtSigla = new javax.swing.JTextField();
         lblPreenchimento = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         lblCPF = new javax.swing.JLabel();
-        edtCPF = new javax.swing.JTextField();
+        edtDescricao = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(590, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("T A M A N H O");
         jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
 
@@ -62,10 +69,8 @@ public class FrCadTamanho extends javax.swing.JDialog {
         lblNome.setText("*Sigla");
         jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
-        edtNome.setBackground(new java.awt.Color(255, 255, 255));
-        edtNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        edtNome.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 460, -1));
+        edtSigla.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtSigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 460, -1));
 
         lblPreenchimento.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         lblPreenchimento.setForeground(new java.awt.Color(204, 0, 51));
@@ -74,17 +79,11 @@ public class FrCadTamanho extends javax.swing.JDialog {
 
         btnVoltar.setBackground(new java.awt.Color(204, 204, 204));
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnVoltar.setForeground(new java.awt.Color(0, 0, 0));
         btnVoltar.setText("VOLTAR");
         btnVoltar.setBorderPainted(false);
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVoltarMouseClicked(evt);
-            }
-        });
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
             }
         });
         jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 70));
@@ -94,10 +93,8 @@ public class FrCadTamanho extends javax.swing.JDialog {
         lblCPF.setText("Descrição");
         jPanel1.add(lblCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
-        edtCPF.setBackground(new java.awt.Color(255, 255, 255));
-        edtCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        edtCPF.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(edtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 460, -1));
+        edtDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 460, -1));
 
         btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -116,11 +113,13 @@ public class FrCadTamanho extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,103 +129,63 @@ public class FrCadTamanho extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVoltarActionPerformed
-
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //verificar os campos se estão preenchidos corretamente
-        if(verificarCampos()){
+        if (verificarCampos()) {
             //Se estiverem corretos vou gravar
             gravar();
         }
         //Senão nada acontece
     }//GEN-LAST:event_btnSalvarMouseClicked
-public void gravar(){
-    //criar uma instância da classe Usuario 
-    //vou preencher os campos
-    Usuario usu = new Usuario();
-    
-    String lSenha = new String(edtSenha.getPassword());
-    String lHashSenha = Utils.calcularHash(lSenha); 
-    
-    //conversão de String para Date
-    Date dataNasc = Utils.converterStringToDate(edtDataNasc.getText()); 
-    
-    usu.setNome(edtNome.getText());
-    usu.setCpf(edtCPF.getText());
-    usu.setTelefone(edtTelefone.getText());
-    usu.setEmail(edtEmail.getText());
-    usu.setDataNasc(dataNasc);
-    usu.setSenha(lHashSenha); 
-    usu.setAtivo(chkAtivo.isSelected());
-    //depois passo o objeto para o controller e ele irá gravar no banco de dados
-    UsuarioController controller = new UsuarioController();
-    
-    if(controller.inserirUsuario(usu)){
-      JOptionPane.showMessageDialog(null,
-              "Usuário gravado com sucesso");
-      this.dispose();
-    }else{
-      JOptionPane.showMessageDialog(null,
-              "O cadastro não foi gravado");
-    }      
-  }
-public boolean verificarCampos(){
-    //Se eu conseguir passar pelas validações retorna true
-    
-    //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
-    //Email - ter um formato de email a@a.com
-    //Senha - pelo menos 6 dígitos
-    //Data - verificar se está no formato de data dd/mm/aaaa
-        
-    if (!edtNome.getText().matches("^[\\p{L} ]+$")) {//a-
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Nome' possui formato inválido");
-      return false;
-    }
-    
 
-    if (!edtCPF.getText().matches("^[0-9]{3}\\.([0-9]{3})\\.([0-9]{3})-([0-9]{2})$")) {
-    JOptionPane.showMessageDialog(null, 
-            "O campo 'CPF' possui formato inválido");
-    return false;
-}
-    
-    if (!edtEmail.getText().matches("^[a-z0-9._-]+@[a-z0-9._-]+.[a-z._]+$")) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Email' possui formato inválido");
-      return false;
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+URL caminhoImagem = getClass().getResource("/images/cadastro.png");
+
+    ImageIcon icon = new ImageIcon(caminhoImagem);
+
+    // Define o ícone da janela
+    this.setIconImage(icon.getImage()); 
+    }//GEN-LAST:event_formWindowOpened
+    public void gravar() {
+        Tamanho tam = new Tamanho();
+
+//criar uma instância da classe Usuario 
+        //vou preencher os campos
+        //conversão de String para Date
+        tam.setSigla(edtSigla.getText());
+        tam.setDescricao(edtDescricao.getText());
+
+        //depois passo o objeto para o controller e ele irá gravar no banco de dados
+        TamanhoController controller = new TamanhoController();
+
+        if (controller.inserirTamanho(tam)) {
+            JOptionPane.showMessageDialog(null,
+                    "Tamanho gravado com sucesso");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "O cadastro não foi gravado");
+        }
     }
-    
-    
-    if(new String(edtSenha.getPassword()).equals("")){
-      JOptionPane.showMessageDialog(null, "O campo 'Senha' em branco");
-      return false;
+
+    public boolean verificarCampos() {
+        //Se eu conseguir passar pelas validações retorna true
+
+        if (!edtSigla.getText().matches("PP|P|M|G|GG|XG|XXG|XXXG")) {//a-
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Sigla' deve conter um tamanho válido (PP, P, M, G, GG, XG, XXG, XXXG).");
+            return false;
+        }
+
+        if (!edtDescricao.getText().matches("^[\\p{L}\\p{N} ,.\\-]{5,100}$")) {
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Descrição' deve conter entre 5 e 100 caracteres válidos.");
+            return false;
+        }
+
+        return true;
     }
-    
-    String lSenha = new String(edtSenha.getPassword());
-    String lConfirmaSenha = new String(edtConfirmaSenha.getPassword());
-    
-    if(! lSenha.equals(lConfirmaSenha)){
-      JOptionPane.showMessageDialog(null, "As senhas não são iguais");
-      return false;
-    }
-    
-    if (lSenha.length() < 6) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Senha' deve ter mais de 6 caracteres");
-      return false;
-    }
-    
-    if (edtDataNasc.getText().equals("")) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Data de Nascimento' em branco");
-      return false;
-    }
-    
-    return true;
-  }
+
     /**
      * @param args the command line arguments
      */
@@ -272,8 +231,8 @@ public boolean verificarCampos(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField edtCPF;
-    private javax.swing.JTextField edtNome;
+    private javax.swing.JTextField edtDescricao;
+    private javax.swing.JTextField edtSigla;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCPF;

@@ -47,7 +47,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
     UsuarioController controller = new UsuarioController();
     Usuario usuario = controller.buscarPorPk(pkusuario);
 
-    String codigo = String.valueOf(usuario.getPkUsuario());
+    String codigo = String.valueOf(usuario.getId_cliente());
     edtCodigo.setText(codigo);
     edtNome.setText(usuario.getNome());
     edtEmail.setText(usuario.getEmail());
@@ -273,7 +273,7 @@ public class FrAltUsuario extends javax.swing.JDialog {
     Usuario usuario = new Usuario();
     
     //preenche os dados do usuário
-    usuario.setPkUsuario(pkusuario); //pkusuario é o atributo da classe que veio do menu
+    usuario.setId_cliente(pkusuario); //pkusuario é o atributo da classe que veio do menu
     usuario.setNome(edtNome.getText());
     usuario.setEmail(edtEmail.getText());
 

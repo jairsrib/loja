@@ -25,6 +25,9 @@ public class Roupa {
         this.descricao = descricao;
     }
 
+    public Roupa(){
+        
+    };
     // Getters e Setters
     public int getIdRoupa() {
         return id_roupa;

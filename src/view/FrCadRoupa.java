@@ -5,10 +5,9 @@
  */
 package view;
 
-import controller.UsuarioController;
-import java.util.Date;
+import controller.RoupaController;
 import javax.swing.JOptionPane;
-import model.Usuario;
+import model.Roupa;
 import utils.Utils;
 
 /**
@@ -169,97 +168,70 @@ public class FrCadRoupa extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //verificar os campos se estão preenchidos corretamente
-        if(verificarCampos()){
+        if (verificarCampos()) {
             //Se estiverem corretos vou gravar
             gravar();
         }
         //Senão nada acontece
     }//GEN-LAST:event_btnSalvarMouseClicked
-public void gravar(){
-    //criar uma instância da classe Usuario 
-    //vou preencher os campos
-    Usuario usu = new Usuario();
-    
-    String lSenha = new String(edtSenha.getPassword());
-    String lHashSenha = Utils.calcularHash(lSenha); 
-    
-    //conversão de String para Date
-    Date dataNasc = Utils.converterStringToDate(edtDataNasc.getText()); 
-    
-    usu.setNome(edtNome.getText());
-    usu.setCpf(edtCPF.getText());
-    usu.setTelefone(edtTelefone.getText());
-    usu.setEmail(edtEmail.getText());
-    usu.setDataNasc(dataNasc);
-    usu.setSenha(lHashSenha); 
-    usu.setAtivo(chkAtivo.isSelected());
-    //depois passo o objeto para o controller e ele irá gravar no banco de dados
-    UsuarioController controller = new UsuarioController();
-    
-    if(controller.inserirUsuario(usu)){
-      JOptionPane.showMessageDialog(null,
-              "Usuário gravado com sucesso");
-      this.dispose();
-    }else{
-      JOptionPane.showMessageDialog(null,
-              "O cadastro não foi gravado");
-    }      
-  }
-public boolean verificarCampos(){
-    //Se eu conseguir passar pelas validações retorna true
-    
-    //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
-    //Email - ter um formato de email a@a.com
-    //Senha - pelo menos 6 dígitos
-    //Data - verificar se está no formato de data dd/mm/aaaa
-        
-    if (!edtNome.getText().matches("^[\\p{L} ]+$")) {//a-
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Nome' possui formato inválido");
-      return false;
-    }
-    
+    public void gravar() {
+        //criar uma instância da classe Usuario 
+        //vou preencher os campos
+        Roupa rou = new Roupa();
 
-    if (!edtCPF.getText().matches("^[0-9]{3}\\.([0-9]{3})\\.([0-9]{3})-([0-9]{2})$")) {
-    JOptionPane.showMessageDialog(null, 
-            "O campo 'CPF' possui formato inválido");
-    return false;
-}
-    
-    if (!edtEmail.getText().matches("^[a-z0-9._-]+@[a-z0-9._-]+.[a-z._]+$")) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Email' possui formato inválido");
-      return false;
+        rou.setNome(edtNome.getText());
+        double preco = Double.parseDouble(edtPreco.getText().replace(",", "."));
+        rou.setPreco(preco);
+        rou.setCor(edtCor.getText());
+        rou.setDescricao(edtDescricao.getText());
+        //depois passo o objeto para o controller e ele irá gravar no banco de dados
+        RoupaController controller = new RoupaController();
+
+        if (controller.inserirRoupa(rou)) {
+            JOptionPane.showMessageDialog(null,
+                    "Roupa gravada com sucesso");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "O cadastro não foi gravado");
+        }
     }
-    
-    
-    if(new String(edtSenha.getPassword()).equals("")){
-      JOptionPane.showMessageDialog(null, "O campo 'Senha' em branco");
-      return false;
+
+    public boolean verificarCampos() {
+        //Se eu conseguir passar pelas validações retorna true
+
+        //Nome - não pode ter números ou caracteres especiais, apenas letras e espaço
+        //Email - ter um formato de email a@a.com
+        //Senha - pelo menos 6 dígitos
+        //Data - verificar se está no formato de data dd/mm/aaaa
+        double preco = Double.parseDouble(edtPreco.getText().replace(",", "."));
+
+        if (!edtNome.getText().matches("^[\\p{L} ]{2,}$")) {//a-
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Nome' é inválido. Use apenas letras e espaços.");
+            return false;
+        }
+
+        if (!edtPreco.getText().matches("^[0-9]{1,3}([.][0-9]{3})*,[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Preço' possui formato inválido");
+            return false;
+        }
+
+        if (!edtCor.getText().matches("^[\\p{L} ]{3,}$")) {
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Cor' é inválido. Use apenas letras e espaços.");
+            return false;
+        }
+        if (!edtDescricao.getText().matches("^[\\p{L}\\p{N} ,.\\-]{5,100}$")) {
+            JOptionPane.showMessageDialog(null,
+                    "O campo 'Descrição' deve ter entre 5 e 100 caracteres válidos.");
+            return false;
+        }
+
+        return true;
     }
-    
-    String lSenha = new String(edtSenha.getPassword());
-    String lConfirmaSenha = new String(edtConfirmaSenha.getPassword());
-    
-    if(! lSenha.equals(lConfirmaSenha)){
-      JOptionPane.showMessageDialog(null, "As senhas não são iguais");
-      return false;
-    }
-    
-    if (lSenha.length() < 6) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Senha' deve ter mais de 6 caracteres");
-      return false;
-    }
-    
-    if (edtDataNasc.getText().equals("")) {
-      JOptionPane.showMessageDialog(null,
-              "O campo 'Data de Nascimento' em branco");
-      return false;
-    }
-    
-    return true;
-  }
+
     /**
      * @param args the command line arguments
      */

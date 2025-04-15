@@ -21,6 +21,10 @@ public class Tamanho {
         this.descricao = descricao;
     }
 
+    public Tamanho() {
+
+    }
+
     // Getters e Setters
     public int getIdTamanho() {
         return id_tamanho;
