@@ -6,27 +6,22 @@
 package view;
 
 import controller.TamanhoController;
-import java.net.URL;
-import java.util.Date;
-import javax.swing.ImageIcon;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.Tamanho;
-import utils.Utils;
 
 /**
  *
  * @author aluno.saolucas
  */
-public class FrCadTamanho extends javax.swing.JDialog {
+public class FrAltTamanho extends javax.swing.JDialog {
 
     /**
-     * Creates new form FrCadTamanho
+     * Creates new form FrAltTamanho
      */
-    public FrCadTamanho(java.awt.Frame parent, boolean modal) {
+    public FrAltTamanho(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-            this.setLocationRelativeTo(null);
-
     }
 
     /**
@@ -38,112 +33,131 @@ public class FrCadTamanho extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
+        edtCodigo = new javax.swing.JTextField();
+        edtDescricao = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        btnAlterarDados = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblNome = new javax.swing.JLabel();
         edtSigla = new javax.swing.JTextField();
-        lblPreenchimento = new javax.swing.JLabel();
-        btnVoltar = new javax.swing.JButton();
-        lblCPF = new javax.swing.JLabel();
-        edtDescricao = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMinimumSize(new java.awt.Dimension(590, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTitulo.setText("T A M A N H O");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo.setText("Alteração de Tamanho");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblNome.setForeground(new java.awt.Color(51, 51, 51));
-        lblNome.setText("*Sigla");
-        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblCodigo.setForeground(new java.awt.Color(0, 0, 0));
+        lblCodigo.setText("ID");
+        jPanel1.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        edtSigla.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtSigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 460, -1));
+        edtCodigo.setEditable(false);
+        edtCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(edtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 90, -1));
 
-        lblPreenchimento.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
-        lblPreenchimento.setForeground(new java.awt.Color(204, 0, 51));
-        lblPreenchimento.setText("*preenchimento obrigatórios");
-        jPanel1.add(lblPreenchimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 203, -1));
+        edtDescricao.setEditable(false);
+        edtDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        edtDescricao.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(edtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 380, -1));
 
-        btnVoltar.setBackground(new java.awt.Color(204, 204, 204));
-        btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnVoltar.setText("VOLTAR");
-        btnVoltar.setBorderPainted(false);
-        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(0, 0, 0));
+        lblEmail.setText("Descrição");
+        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        btnAlterarDados.setBackground(new java.awt.Color(0, 0, 0));
+        btnAlterarDados.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnAlterarDados.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterarDados.setText("Alterar senha");
+        btnAlterarDados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVoltarMouseClicked(evt);
+                btnAlterarDadosMouseClicked(evt);
             }
         });
-        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 70));
+        jPanel1.add(btnAlterarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 140, 40));
 
-        lblCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblCPF.setForeground(new java.awt.Color(51, 51, 51));
-        lblCPF.setText("Descrição");
-        jPanel1.add(lblCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 140, -1));
 
-        edtDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(edtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 460, -1));
+        lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(0, 0, 0));
+        lblNome.setText("Sigla");
+        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        edtSigla.setEditable(false);
+        edtSigla.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        edtSigla.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(edtSigla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 380, -1));
 
         btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
-        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSalvar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("CADASTRAR");
+        btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSalvarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 590, 80));
-
-        jScrollPane1.setViewportView(jPanel1);
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+    private void btnAlterarDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMouseClicked
+        if (edtSigla.isEditable() == false) {
+            edtSigla.setEditable(true);
+            edtDescricao.setEditable(true);
+            edtSigla.setBackground(Color.white);
+            edtDescricao.setBackground(Color.white);
+            btnAlterarDados.setText("Cancelar alteração");
+
+        } else {
+            edtSigla.setEditable(false);
+            edtDescricao.setEditable(false);
+            edtSigla.setBackground(Color.gray);
+            edtDescricao.setBackground(Color.gray);
+            btnAlterarDados.setText("Alterar Senha");
+
+        }
+    }//GEN-LAST:event_btnAlterarDadosMouseClicked
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         this.dispose();
-    }//GEN-LAST:event_btnVoltarMouseClicked
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
-        //verificar os campos se estão preenchidos corretamente
         if (verificarCampos()) {
-            //Se estiverem corretos vou gravar
             gravar();
         }
-        //Senão nada acontece
     }//GEN-LAST:event_btnSalvarMouseClicked
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-URL caminhoImagem = getClass().getResource("/images/cadastro.png");
-
-    ImageIcon icon = new ImageIcon(caminhoImagem);
-
-    // Define o ícone da janela
-    this.setIconImage(icon.getImage()); 
-    }//GEN-LAST:event_formWindowOpened
     public void gravar() {
         Tamanho tam = new Tamanho();
 
@@ -201,20 +215,20 @@ URL caminhoImagem = getClass().getResource("/images/cadastro.png");
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrCadTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrAltTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrCadTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrAltTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrCadTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrAltTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrCadTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrAltTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrCadTamanho dialog = new FrCadTamanho(new javax.swing.JFrame(), true);
+                FrAltTamanho dialog = new FrAltTamanho(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -227,15 +241,16 @@ URL caminhoImagem = getClass().getResource("/images/cadastro.png");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterarDados;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnVoltar;
+    private javax.swing.JTextField edtCodigo;
     private javax.swing.JTextField edtDescricao;
     private javax.swing.JTextField edtSigla;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblPreenchimento;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

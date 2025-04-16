@@ -39,33 +39,26 @@ public class FrConUsuario extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
+        lblTitulo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Usuário");
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lblTitulo.setText("Consulta de Usuários");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Id", "Nome", "Email", "Data Nasc.", "Ativo"
+                "ID", "Nome", "Email", "Data Nasc.", "Ativo"
             }
         ) {
             Class[] types = new Class [] {
@@ -85,7 +78,7 @@ public class FrConUsuario extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblUsuarios);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 670, 320));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 670, 320));
 
         btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnExcluir.setText("Excluir");
@@ -94,7 +87,7 @@ public class FrConUsuario extends javax.swing.JDialog {
                 btnExcluirMouseClicked(evt);
             }
         });
-        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, -1, -1));
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, -1, -1));
 
         btnAlterar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnAlterar.setText("Alterar");
@@ -103,7 +96,7 @@ public class FrConUsuario extends javax.swing.JDialog {
                 btnAlterarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, -1));
+        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, -1));
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCancelar.setText("Voltar");
@@ -112,7 +105,7 @@ public class FrConUsuario extends javax.swing.JDialog {
                 btnCancelarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
         btnPesquisar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPesquisar.setText("Pesquisar");
@@ -121,7 +114,12 @@ public class FrConUsuario extends javax.swing.JDialog {
                 btnPesquisarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, -1, -1));
+
+        lblTitulo1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo1.setText("Consulta de Usuários ");
+        jPanel1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,9 +129,7 @@ public class FrConUsuario extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -273,7 +269,7 @@ public class FrConUsuario extends javax.swing.JDialog {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }
