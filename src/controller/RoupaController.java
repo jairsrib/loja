@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Roupa;
+import model.Roupa_Tamanho;
 import model.Tamanho;
 
 /**
@@ -169,6 +170,36 @@ public class RoupaController {
             JOptionPane.showMessageDialog(null, "Erro ao excluir: "
                     + ex);
         } finally {
+            gerenciador.fecharConexao(comando);
+        }
+        return false;
+    }
+    public boolean inserirEstoque(Roupa_Tamanho rt) {
+        //Montar o comando a ser executado
+        //os ? são variáveis que são preenchidas mais adiante
+        String sql = "INSERT INTO Roupa_Tamanho(id_roupa, id_tamanho) "
+                + " VALUES (?, ?)";
+
+        //Cria uma instância do gerenciador de conexão(conexão com o banco de dados),
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        //Declara as variáveis como nulas antes do try para poder usar no finally
+        PreparedStatement comando = null;
+        try {
+            //prepara o sql, analisando o formato e as váriaveis
+            comando = gerenciador.prepararComando(sql);
+
+            //define o valor de cada variável(?) pela posição em que aparece no sql
+            comando.setInt(1, rt.getId_roupa());
+            comando.setInt(2, rt.getId_tamanho());
+           
+
+            //Executa o insert
+            comando.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {//caso ocorra um erro relacionado ao banco de dados
+            JOptionPane.showMessageDialog(null, e.getMessage());//exibe popup com o erro
+        } finally {//depois de executar o try, dando erro ou não executa o finally
             gerenciador.fecharConexao(comando);
         }
         return false;

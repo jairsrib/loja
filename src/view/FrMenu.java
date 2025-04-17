@@ -34,9 +34,9 @@ public class FrMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         meCadastro = new javax.swing.JMenu();
+        miCadEstoque = new javax.swing.JMenuItem();
         miCadRoupa = new javax.swing.JMenuItem();
         miCadTamanho = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
@@ -57,14 +57,18 @@ public class FrMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 100)); // NOI18N
-        jLabel1.setText("Rene");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 310, 90));
-
         barMenu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         meCadastro.setText("Cadastro");
         meCadastro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        miCadEstoque.setText("Estoque");
+        miCadEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadEstoqueActionPerformed(evt);
+            }
+        });
+        meCadastro.add(miCadEstoque);
 
         miCadRoupa.setText("Roupa");
         miCadRoupa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -226,6 +230,10 @@ public class FrMenu extends javax.swing.JFrame {
         telaTamanho.setVisible(true);
     }//GEN-LAST:event_miConTamanhoActionPerformed
 
+    private void miCadEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miCadEstoqueActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,11 +271,11 @@ public class FrMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu meCadastro;
     private javax.swing.JMenu meConsulta;
     private javax.swing.JMenu meSobre;
+    private javax.swing.JMenuItem miCadEstoque;
     private javax.swing.JMenuItem miCadRoupa;
     private javax.swing.JMenuItem miCadTamanho;
     private javax.swing.JMenuItem miConRoupa;
