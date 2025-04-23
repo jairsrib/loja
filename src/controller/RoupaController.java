@@ -174,7 +174,8 @@ public class RoupaController {
         }
         return false;
     }
-    public boolean inserirEstoque(Roupa_Tamanho rt) {
+    
+    public boolean inserirTamanho(Roupa_Tamanho rt) {
         //Montar o comando a ser executado
         //os ? são variáveis que são preenchidas mais adiante
         String sql = "INSERT INTO Roupa_Tamanho(id_roupa, id_tamanho) "
@@ -204,4 +205,39 @@ public class RoupaController {
         }
         return false;
     }
+
+    public Integer consultarUltimoId() {
+    // Guarda o SQL para obter apenas o id_roupa
+    String sql = "SELECT id_roupa FROM roupa";
+    
+    // Cria um gerenciador de conexão
+    GerenciadorConexao gerenciador = new GerenciadorConexao();
+    
+    // Cria as variáveis vazias antes do try, pois vão ser usadas no finally
+    PreparedStatement comando = null;
+    ResultSet resultado = null;
+    
+    // Variável para armazenar o último ID
+    Integer ultimoId = null;
+    
+    try {
+        comando = gerenciador.prepararComando(sql);
+        
+        resultado = comando.executeQuery();
+        
+        while (resultado.next()) {
+            ultimoId = resultado.getInt("id_roupa");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        // Fecha a conexão
+        gerenciador.fecharConexao(comando, resultado);
+    }
+    
+    // Retorna o último ID (ou null se não houver nenhum registro)
+    return ultimoId;
+}
+
+
 }

@@ -17,14 +17,6 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miCadEstoque">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Estoque"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miCadEstoqueActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miCadRoupa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Roupa"/>

@@ -6,8 +6,13 @@
 package view;
 
 import controller.RoupaController;
+import controller.TamanhoController;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Roupa;
+import model.Roupa_Tamanho;
+import model.Tamanho;
 import utils.Utils;
 
 /**
@@ -39,55 +44,56 @@ public class FrCadRoupa extends javax.swing.JDialog {
         lblNome = new javax.swing.JLabel();
         edtNome = new javax.swing.JTextField();
         edtDescricao = new javax.swing.JTextField();
-        lblEmail = new javax.swing.JLabel();
+        lblRoupa_Tamanho = new javax.swing.JLabel();
         lblPreenchimento = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
-        lblCPF = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
         edtPreco = new javax.swing.JTextField();
-        lblTelefone = new javax.swing.JLabel();
+        lblCor = new javax.swing.JLabel();
         edtCor = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbTamanho = new javax.swing.JTable();
+        lblDescricao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(590, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("R O U P A");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
 
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNome.setForeground(new java.awt.Color(51, 51, 51));
         lblNome.setText("*Nome");
-        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jPanel1.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        edtNome.setBackground(new java.awt.Color(255, 255, 255));
         edtNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        edtNome.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 460, -1));
+        jPanel1.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 460, -1));
 
-        edtDescricao.setBackground(new java.awt.Color(255, 255, 255));
         edtDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        edtDescricao.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(edtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 460, -1));
+        jPanel1.add(edtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 460, -1));
 
-        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblEmail.setForeground(new java.awt.Color(51, 51, 51));
-        lblEmail.setText("Descrição");
-        jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        lblRoupa_Tamanho.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblRoupa_Tamanho.setForeground(new java.awt.Color(51, 51, 51));
+        lblRoupa_Tamanho.setText("Tamanho");
+        jPanel1.add(lblRoupa_Tamanho, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         lblPreenchimento.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         lblPreenchimento.setForeground(new java.awt.Color(204, 0, 51));
         lblPreenchimento.setText("*preenchimento obrigatórios");
-        jPanel1.add(lblPreenchimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 203, -1));
+        jPanel1.add(lblPreenchimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 203, -1));
 
         btnVoltar.setBackground(new java.awt.Color(204, 204, 204));
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnVoltar.setForeground(new java.awt.Color(0, 0, 0));
         btnVoltar.setText("VOLTAR");
         btnVoltar.setBorderPainted(false);
         btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,30 +108,26 @@ public class FrCadRoupa extends javax.swing.JDialog {
         });
         jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 70));
 
-        lblCPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblCPF.setForeground(new java.awt.Color(51, 51, 51));
-        lblCPF.setText("*Preço");
-        jPanel1.add(lblCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPreco.setForeground(new java.awt.Color(51, 51, 51));
+        lblPreco.setText("*Preço");
+        jPanel1.add(lblPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        edtPreco.setBackground(new java.awt.Color(255, 255, 255));
         edtPreco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        edtPreco.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(edtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 460, -1));
+        jPanel1.add(edtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 460, -1));
 
-        lblTelefone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTelefone.setForeground(new java.awt.Color(51, 51, 51));
-        lblTelefone.setText("Cor");
-        jPanel1.add(lblTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        lblCor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblCor.setForeground(new java.awt.Color(51, 51, 51));
+        lblCor.setText("Cor");
+        jPanel1.add(lblCor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
-        edtCor.setBackground(new java.awt.Color(255, 255, 255));
         edtCor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        edtCor.setForeground(new java.awt.Color(0, 0, 0));
         edtCor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edtCorActionPerformed(evt);
             }
         });
-        jPanel1.add(edtCor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 460, -1));
+        jPanel1.add(edtCor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 460, -1));
 
         btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
         btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -136,7 +138,45 @@ public class FrCadRoupa extends javax.swing.JDialog {
                 btnSalvarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 590, 80));
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 590, 80));
+
+        tbTamanho.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Tamanho"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbTamanho);
+        if (tbTamanho.getColumnModel().getColumnCount() > 0) {
+            tbTamanho.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 460, 80));
+
+        lblDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblDescricao.setForeground(new java.awt.Color(51, 51, 51));
+        lblDescricao.setText("Descrição");
+        jPanel1.add(lblDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -148,7 +188,7 @@ public class FrCadRoupa extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -169,11 +209,18 @@ public class FrCadRoupa extends javax.swing.JDialog {
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //verificar os campos se estão preenchidos corretamente
         if (verificarCampos()) {
-            //Se estiverem corretos vou gravar
-            gravar();
+            if (tbTamanho.getSelectedRow() != -1) {
+                //Se estiverem corretos vou gravar
+                gravar();
+                salvarRoupaTamanho();
+            }
         }
         //Senão nada acontece
     }//GEN-LAST:event_btnSalvarMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        pesquisar();
+    }//GEN-LAST:event_formWindowOpened
     public void gravar() {
         //criar uma instância da classe Usuario 
         //vou preencher os campos
@@ -197,6 +244,36 @@ public class FrCadRoupa extends javax.swing.JDialog {
         }
     }
 
+    public void salvarRoupaTamanho() {
+        //criar uma instância da classe Usuario 
+        //vou preencher os campos
+        Roupa_Tamanho rt = new Roupa_Tamanho();
+        RoupaController controller = new RoupaController();
+//fazer um loop pra pegar todos os tamanhos selecionados na tela de tamanho
+        //Verificar se tem uma linha da grade selecionada
+        if (tbTamanho.getSelectedRow() != -1) {
+            //Se tiver pegar o código do usuário da grade
+            int linhaSelecionada = tbTamanho.getSelectedRow();
+            String textoCelula = tbTamanho.getValueAt(linhaSelecionada, 0).toString();
+
+            //converter o texto da célula em inteiro
+            int id_tamanho = Integer.parseInt(textoCelula);
+
+            rt.setId_roupa(controller.consultarUltimoId());
+            rt.setId_tamanho(id_tamanho);
+
+            //depois passo o objeto para o controller e ele irá gravar no banco de dados
+            if (controller.inserirTamanho(rt)) {
+                JOptionPane.showMessageDialog(null,
+                        "Roupa gravada com sucesso");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "O cadastro não foi gravado");
+            }
+        }
+    }
+
     public boolean verificarCampos() {
         //Se eu conseguir passar pelas validações retorna true
 
@@ -212,24 +289,44 @@ public class FrCadRoupa extends javax.swing.JDialog {
             return false;
         }
 
-        if (!edtPreco.getText().matches("^[0-9]{1,3}([.][0-9]{3})*,[0-9]{2}$")) {
+        if (!edtPreco.getText().matches("^[0-9]{1,3}([0-9]{3})*,[0-9]{2}$")) {
             JOptionPane.showMessageDialog(null,
                     "O campo 'Preço' possui formato inválido");
             return false;
         }
 
-        if (!edtCor.getText().matches("^[\\p{L} ]{3,}$")) {
-            JOptionPane.showMessageDialog(null,
-                    "O campo 'Cor' é inválido. Use apenas letras e espaços.");
-            return false;
-        }
-        if (!edtDescricao.getText().matches("^[\\p{L}\\p{N} ,.\\-]{5,100}$")) {
-            JOptionPane.showMessageDialog(null,
-                    "O campo 'Descrição' deve ter entre 5 e 100 caracteres válidos.");
-            return false;
-        }
 
         return true;
+    }
+
+    public void pesquisar() {
+
+        //Pega o modelo da grade com suas colunas
+        // o 
+        DefaultTableModel modeloTabela = (DefaultTableModel) tbTamanho.getModel();
+
+        //Limpa a grade setando o número de linhas para zero
+        modeloTabela.setNumRows(0);
+
+        //Cria um UsuarioController para poder acessar os dados de tbusuario
+        TamanhoController controller = new TamanhoController();
+
+        //consulta os usuários e guarda a lista de usuários que encontrou
+        List<Tamanho> listaTamanhos = controller.consultar();
+
+        //Preencher a grade
+        //percorre todos os usuários presentes na lista
+        for (Tamanho tam : listaTamanhos) {
+            //cria um array onde cada posição é o valor das colunas da grade
+            Object[] linha = {
+                tam.getIdTamanho(), //coluna 0
+                tam.getSigla(), //coluna 1
+                tam.getDescricao(), //coluna 2
+            };
+
+            //Adiciona o array com os dados do usuário na grade
+            modeloTabela.addRow(linha);
+        }
     }
 
     /**
@@ -283,11 +380,14 @@ public class FrCadRoupa extends javax.swing.JDialog {
     private javax.swing.JTextField edtPreco;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCPF;
-    private javax.swing.JLabel lblEmail;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCor;
+    private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblPreenchimento;
-    private javax.swing.JLabel lblTelefone;
+    private javax.swing.JLabel lblRoupa_Tamanho;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tbTamanho;
     // End of variables declaration//GEN-END:variables
 }
