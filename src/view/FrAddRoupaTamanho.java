@@ -166,12 +166,12 @@ public void pesquisar() {
 
         RoupaController controller = new RoupaController();
 
-        tblTamanho.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+         if (tblTamanho.getSelectedRow() != -1) {
+            //Se tiver pegar o código do usuário da grade
+            int linhaSelecionada = tblTamanho.getSelectedRow();
+            String textoCelula = tblTamanho.getValueAt(linhaSelecionada, 0).toString();
 
-        int[] linhasSelecionadas = tblTamanho.getSelectedRows();
-
-        for (int linha : linhasSelecionadas) {
-            String textoCelula = tblTamanho.getValueAt(linha, 0).toString();
+            //converter o texto da célula em inteiro
             int id_tamanho = Integer.parseInt(textoCelula);
 
             rt.setId_roupa(controller.consultarUltimoId());
