@@ -43,7 +43,7 @@ public class FrMenu extends javax.swing.JFrame {
         miConUsuario = new javax.swing.JMenuItem();
         miConRoupa = new javax.swing.JMenuItem();
         miConTamanho = new javax.swing.JMenuItem();
-        meSobre = new javax.swing.JMenu();
+        miRoupaTamanho = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
@@ -124,16 +124,15 @@ public class FrMenu extends javax.swing.JFrame {
         });
         meConsulta.add(miConTamanho);
 
-        barMenu.add(meConsulta);
-
-        meSobre.setText("Sobre");
-        meSobre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        meSobre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                meSobreMouseClicked(evt);
+        miRoupaTamanho.setText("Tamanhos Disponíveis");
+        miRoupaTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRoupaTamanhoActionPerformed(evt);
             }
         });
-        barMenu.add(meSobre);
+        meConsulta.add(miRoupaTamanho);
+
+        barMenu.add(meConsulta);
 
         setJMenuBar(barMenu);
 
@@ -169,7 +168,7 @@ public class FrMenu extends javax.swing.JFrame {
 
   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
       URL caminhoImagem = getClass().getResource("/images/menu.png");
-
+      
       ImageIcon icon = new ImageIcon(caminhoImagem);
 
       // Define o ícone da janela
@@ -179,12 +178,6 @@ public class FrMenu extends javax.swing.JFrame {
   private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
       this.dispose();
   }//GEN-LAST:event_miSairActionPerformed
-
-  private void meSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_meSobreMouseClicked
-      FrSobre telaSobre = new FrSobre(this, rootPaneCheckingEnabled);
-
-      telaSobre.setVisible(true);
-  }//GEN-LAST:event_meSobreMouseClicked
 
     private void miCadRoupaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miCadRoupaMouseClicked
         FrCadRoupa telaRoupa = new FrCadRoupa(this, rootPaneCheckingEnabled);
@@ -220,6 +213,12 @@ public class FrMenu extends javax.swing.JFrame {
         //Torno a tela visível
         telaTamanho.setVisible(true);
     }//GEN-LAST:event_miConTamanhoActionPerformed
+
+    private void miRoupaTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRoupaTamanhoActionPerformed
+        FrConTamanhoRoupa telaTamanhoRoupa = new FrConTamanhoRoupa(null, true);
+        
+        telaTamanhoRoupa.setVisible(true);
+    }//GEN-LAST:event_miRoupaTamanhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,12 +260,12 @@ public class FrMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu meCadastro;
     private javax.swing.JMenu meConsulta;
-    private javax.swing.JMenu meSobre;
     private javax.swing.JMenuItem miCadRoupa;
     private javax.swing.JMenuItem miCadTamanho;
     private javax.swing.JMenuItem miConRoupa;
     private javax.swing.JMenuItem miConTamanho;
     private javax.swing.JMenuItem miConUsuario;
+    private javax.swing.JMenuItem miRoupaTamanho;
     private javax.swing.JMenuItem miSair;
     // End of variables declaration//GEN-END:variables
 }

@@ -174,7 +174,7 @@ public class RoupaController {
         }
         return false;
     }
-    
+
     public boolean inserirTamanho(Roupa_Tamanho rt) {
         //Montar o comando a ser executado
         //os ? são variáveis que são preenchidas mais adiante
@@ -192,7 +192,6 @@ public class RoupaController {
             //define o valor de cada variável(?) pela posição em que aparece no sql
             comando.setInt(1, rt.getId_roupa());
             comando.setInt(2, rt.getId_tamanho());
-           
 
             //Executa o insert
             comando.executeUpdate();
@@ -207,37 +206,85 @@ public class RoupaController {
     }
 
     public Integer consultarUltimoId() {
-    // Guarda o SQL para obter apenas o id_roupa
-    String sql = "SELECT id_roupa FROM roupa";
-    
-    // Cria um gerenciador de conexão
-    GerenciadorConexao gerenciador = new GerenciadorConexao();
-    
-    // Cria as variáveis vazias antes do try, pois vão ser usadas no finally
-    PreparedStatement comando = null;
-    ResultSet resultado = null;
-    
-    // Variável para armazenar o último ID
-    Integer ultimoId = null;
-    
-    try {
-        comando = gerenciador.prepararComando(sql);
-        
-        resultado = comando.executeQuery();
-        
-        while (resultado.next()) {
-            ultimoId = resultado.getInt("id_roupa");
+        // Guarda o SQL para obter apenas o id_roupa
+        String sql = "SELECT id_roupa FROM roupa";
+
+        // Cria um gerenciador de conexão
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+
+        // Cria as variáveis vazias antes do try, pois vão ser usadas no finally
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
+
+        // Variável para armazenar o último ID
+        Integer ultimoId = null;
+
+        try {
+            comando = gerenciador.prepararComando(sql);
+
+            resultado = comando.executeQuery();
+
+            while (resultado.next()) {
+                ultimoId = resultado.getInt("id_roupa");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Fecha a conexão
+            gerenciador.fecharConexao(comando, resultado);
         }
-    } catch (SQLException ex) {
-        Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-        // Fecha a conexão
-        gerenciador.fecharConexao(comando, resultado);
+
+        // Retorna o último ID (ou null se não houver nenhum registro)
+        return ultimoId;
     }
     
-    // Retorna o último ID (ou null se não houver nenhum registro)
-    return ultimoId;
-}
+   public List<Roupa_Tamanho> consultarTam() {
+        //Guarda o sql
+        String sql = "SELECT * FROM roupa_tamanho";
 
+        //Cria um gerenciador de conexão
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        //Cria as variáveis vazias antes do try pois vão ser usadas no finally
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
 
+        //Crio a lista de usuários vazia
+        List<Roupa_Tamanho> listaTamRoupa = new ArrayList<>();
+
+        try {
+            //Preparo do comando sql
+            comando = gerenciador.prepararComando(sql);
+
+            //Como não há parâmetros já executo direto
+            resultado = comando.executeQuery();
+
+            //Irá percorrer os registros do resultado do sql
+            //A cada next() a variavel resultado aponta para o próximo registro 
+            //enquanto next() == true quer dizer que tem registros
+            while (resultado.next()) {
+
+                //Crio um novo usuário vazio
+                Roupa_Tamanho rou = new Roupa_Tamanho();
+
+                //Leio as informações da variável resultado e guardo no usuário
+                rou.setId_roupa(resultado.getInt("id_roupa"));
+                rou.setId_tamanho(resultado.getInt("id_tamanho"));
+                
+
+                //adiciono o usuário na lista
+                listaTamRoupa.add(rou);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        } finally {
+            gerenciador.fecharConexao(comando, resultado);
+        }
+
+        //retorno a lista de usuários
+        return listaTamRoupa;
+    }
+   
+   
 }

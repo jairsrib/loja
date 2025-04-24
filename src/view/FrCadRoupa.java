@@ -44,16 +44,13 @@ public class FrCadRoupa extends javax.swing.JDialog {
         lblNome = new javax.swing.JLabel();
         edtNome = new javax.swing.JTextField();
         edtDescricao = new javax.swing.JTextField();
-        lblRoupa_Tamanho = new javax.swing.JLabel();
         lblPreenchimento = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         lblPreco = new javax.swing.JLabel();
         edtPreco = new javax.swing.JTextField();
         lblCor = new javax.swing.JLabel();
         edtCor = new javax.swing.JTextField();
-        btnSalvar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbTamanho = new javax.swing.JTable();
+        btnProximo = new javax.swing.JButton();
         lblDescricao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -81,11 +78,6 @@ public class FrCadRoupa extends javax.swing.JDialog {
 
         edtDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(edtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 460, -1));
-
-        lblRoupa_Tamanho.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblRoupa_Tamanho.setForeground(new java.awt.Color(51, 51, 51));
-        lblRoupa_Tamanho.setText("Tamanho");
-        jPanel1.add(lblRoupa_Tamanho, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
         lblPreenchimento.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
         lblPreenchimento.setForeground(new java.awt.Color(204, 0, 51));
@@ -129,49 +121,16 @@ public class FrCadRoupa extends javax.swing.JDialog {
         });
         jPanel1.add(edtCor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 460, -1));
 
-        btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
-        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("CADASTRAR");
-        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnProximo.setBackground(new java.awt.Color(0, 0, 0));
+        btnProximo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnProximo.setForeground(new java.awt.Color(255, 255, 255));
+        btnProximo.setText("Proximo");
+        btnProximo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseClicked(evt);
+                btnProximoMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 590, 80));
-
-        tbTamanho.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "ID", "Tamanho"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tbTamanho);
-        if (tbTamanho.getColumnModel().getColumnCount() > 0) {
-            tbTamanho.getColumnModel().getColumn(0).setResizable(false);
-        }
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 460, 80));
+        jPanel1.add(btnProximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 590, 80));
 
         lblDescricao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDescricao.setForeground(new java.awt.Color(51, 51, 51));
@@ -188,7 +147,7 @@ public class FrCadRoupa extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -206,20 +165,19 @@ public class FrCadRoupa extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtCorActionPerformed
 
-    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+    private void btnProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProximoMouseClicked
         //verificar os campos se estão preenchidos corretamente
         if (verificarCampos()) {
-            if (tbTamanho.getSelectedRow() != -1) {
+            
                 //Se estiverem corretos vou gravar
                 gravar();
-                salvarRoupaTamanho();
-            }
+            FrAddRoupaTamanho telaAdd = new FrAddRoupaTamanho(null, true);
+            telaAdd.setVisible(true);
         }
         //Senão nada acontece
-    }//GEN-LAST:event_btnSalvarMouseClicked
+    }//GEN-LAST:event_btnProximoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        pesquisar();
     }//GEN-LAST:event_formWindowOpened
     public void gravar() {
         //criar uma instância da classe Usuario 
@@ -244,35 +202,7 @@ public class FrCadRoupa extends javax.swing.JDialog {
         }
     }
 
-    public void salvarRoupaTamanho() {
-        //criar uma instância da classe Usuario 
-        //vou preencher os campos
-        Roupa_Tamanho rt = new Roupa_Tamanho();
-        RoupaController controller = new RoupaController();
-//fazer um loop pra pegar todos os tamanhos selecionados na tela de tamanho
-        //Verificar se tem uma linha da grade selecionada
-        if (tbTamanho.getSelectedRow() != -1) {
-            //Se tiver pegar o código do usuário da grade
-            int linhaSelecionada = tbTamanho.getSelectedRow();
-            String textoCelula = tbTamanho.getValueAt(linhaSelecionada, 0).toString();
-
-            //converter o texto da célula em inteiro
-            int id_tamanho = Integer.parseInt(textoCelula);
-
-            rt.setId_roupa(controller.consultarUltimoId());
-            rt.setId_tamanho(id_tamanho);
-
-            //depois passo o objeto para o controller e ele irá gravar no banco de dados
-            if (controller.inserirTamanho(rt)) {
-                JOptionPane.showMessageDialog(null,
-                        "Roupa gravada com sucesso");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "O cadastro não foi gravado");
-            }
-        }
-    }
+    
 
     public boolean verificarCampos() {
         //Se eu conseguir passar pelas validações retorna true
@@ -299,35 +229,7 @@ public class FrCadRoupa extends javax.swing.JDialog {
         return true;
     }
 
-    public void pesquisar() {
-
-        //Pega o modelo da grade com suas colunas
-        // o 
-        DefaultTableModel modeloTabela = (DefaultTableModel) tbTamanho.getModel();
-
-        //Limpa a grade setando o número de linhas para zero
-        modeloTabela.setNumRows(0);
-
-        //Cria um UsuarioController para poder acessar os dados de tbusuario
-        TamanhoController controller = new TamanhoController();
-
-        //consulta os usuários e guarda a lista de usuários que encontrou
-        List<Tamanho> listaTamanhos = controller.consultar();
-
-        //Preencher a grade
-        //percorre todos os usuários presentes na lista
-        for (Tamanho tam : listaTamanhos) {
-            //cria um array onde cada posição é o valor das colunas da grade
-            Object[] linha = {
-                tam.getIdTamanho(), //coluna 0
-                tam.getSigla(), //coluna 1
-                tam.getDescricao(), //coluna 2
-            };
-
-            //Adiciona o array com os dados do usuário na grade
-            modeloTabela.addRow(linha);
-        }
-    }
+    
 
     /**
      * @param args the command line arguments
@@ -372,7 +274,7 @@ public class FrCadRoupa extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField edtCor;
     private javax.swing.JTextField edtDescricao;
@@ -380,14 +282,11 @@ public class FrCadRoupa extends javax.swing.JDialog {
     private javax.swing.JTextField edtPreco;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCor;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblPreenchimento;
-    private javax.swing.JLabel lblRoupa_Tamanho;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tbTamanho;
     // End of variables declaration//GEN-END:variables
 }

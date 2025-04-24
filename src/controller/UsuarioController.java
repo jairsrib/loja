@@ -139,21 +139,18 @@ public class UsuarioController {
         }
         return false;
     }
-    
+
     public boolean alterarSenha(Usuario u) {
         String sql = "UPDATE cliente SET senha = ? where cpf = ?";
 
-        
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         PreparedStatement comando = null;
 
         try {
             comando = gerenciador.prepararComando(sql);
+            comando.setString(1, u.getCpf());
+            comando.setString(2, u.getSenha());
 
-            comando.setString(1, u.getSenha());
-            comando.setString(2, u.getCpf());
-
-              
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
         } finally {
@@ -161,7 +158,6 @@ public class UsuarioController {
         }
         return false;
     }
-
 
     public Usuario buscarPorPk(int id_cliente) {
         //Guarda o sql
@@ -286,5 +282,47 @@ public class UsuarioController {
             gerenciador.fecharConexao(comando);
         }
         return false;
+    }
+
+    public Usuario buscarPorCpf(String cpf) {
+        //Guarda o sql
+        String sql = "SELECT * FROM cliente "
+                + " WHERE cpf = ? ";
+
+        //Cria um gerenciador de conexão
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        //Cria as variáveis vazias antes do try pois vão ser usadas no finally
+        PreparedStatement comando = null;
+        ResultSet resultado = null;
+
+        //Crio um usuário vazio
+        Usuario usu = new Usuario();
+
+        try {
+            //Preparo do comando sql
+            comando = gerenciador.prepararComando(sql);
+
+            comando.setString(1, cpf);
+
+            //Executo o comando e guardo o resultado
+            resultado = comando.executeQuery();
+
+            //Irá percorrer os registros do resultado do sql
+            //A cada next() a variavel resultado aponta para o próximo registro 
+            //enquanto next() == true quer dizer que tem registros
+            if (resultado.next()) {
+
+                //Leio as informações da variável resultado e guardo no usuário
+                usu.setSenha(resultado.getString("senha"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        } finally {
+            gerenciador.fecharConexao(comando, resultado);
+        }
+        //retorno o usuário
+        return usu;
     }
 }
