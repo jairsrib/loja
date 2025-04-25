@@ -16,10 +16,15 @@ import model.Roupa;
  */
 public class FrCompra extends javax.swing.JDialog {
 
+   private int pkusuario;
+  
+  public void setPkusuario(int pkusuario){
+    this.pkusuario = pkusuario;
+  }
     /**
      * Creates new form FrCompra
      */
-    public FrCompra(java.awt.Frame parent, boolean modal) {
+    public FrCompra(java.awt.Frame parent, boolean modal, int pkusuario) {
         super(parent, modal);
         initComponents();
         pesquisar();
@@ -39,8 +44,10 @@ public class FrCompra extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lblVenda = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblUsuarios1 = new javax.swing.JTable();
+        tblRoupas = new javax.swing.JTable();
         btnComprar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,7 +83,7 @@ public class FrCompra extends javax.swing.JDialog {
         lblVenda.setForeground(new java.awt.Color(0, 0, 0));
         lblVenda.setText("Venda");
 
-        tblUsuarios1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRoupas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -99,7 +106,7 @@ public class FrCompra extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblUsuarios1);
+        jScrollPane2.setViewportView(tblRoupas);
 
         btnComprar.setText("Comprar");
         btnComprar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,6 +114,12 @@ public class FrCompra extends javax.swing.JDialog {
                 btnComprarMouseClicked(evt);
             }
         });
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Quantidade");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,23 +134,28 @@ public class FrCompra extends javax.swing.JDialog {
                         .addGap(40, 40, 40)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnComprar)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnComprar)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblVenda)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(52, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnComprar)
-                        .addGap(34, 34, 34))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnComprar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblVenda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,10 +173,10 @@ public class FrCompra extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnComprarMouseClicked
-        if (tblUsuarios.getSelectedRow() != -1) {
+        if (tblRoupas.getSelectedRow() != -1) {
             //Se tiver pegar o código do usuário da grade
-            int linhaSelecionada = tblUsuarios.getSelectedRow();
-            String textoCelula = tblUsuarios.getValueAt(linhaSelecionada, 0).toString();
+            int linhaSelecionada = tblRoupas.getSelectedRow();
+            String textoCelula = tblRoupas.getValueAt(linhaSelecionada, 0).toString();
 
             //converter o texto da célula em inteiro
             int id_roupa = Integer.parseInt(textoCelula);
@@ -227,7 +245,7 @@ public class FrCompra extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrCompra dialog = new FrCompra(new javax.swing.JFrame(), true);
+                FrCompra dialog = new FrCompra(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -241,11 +259,13 @@ public class FrCompra extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblVenda;
+    private javax.swing.JTable tblRoupas;
     private javax.swing.JTable tblUsuarios;
-    private javax.swing.JTable tblUsuarios1;
     // End of variables declaration//GEN-END:variables
 }
