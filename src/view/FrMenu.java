@@ -44,6 +44,7 @@ public class FrMenu extends javax.swing.JFrame {
         miConRoupa = new javax.swing.JMenuItem();
         miConTamanho = new javax.swing.JMenuItem();
         miRoupaTamanho = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
@@ -131,6 +132,14 @@ public class FrMenu extends javax.swing.JFrame {
             }
         });
         meConsulta.add(miRoupaTamanho);
+
+        jMenuItem1.setText("Compras");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        meConsulta.add(jMenuItem1);
 
         barMenu.add(meConsulta);
 
@@ -220,6 +229,11 @@ public class FrMenu extends javax.swing.JFrame {
         telaTamanhoRoupa.setVisible(true);
     }//GEN-LAST:event_miRoupaTamanhoActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrConVendas telaVenda = new FrConVendas(this, rootPaneCheckingEnabled);
+        telaVenda.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +271,7 @@ public class FrMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu meCadastro;
     private javax.swing.JMenu meConsulta;

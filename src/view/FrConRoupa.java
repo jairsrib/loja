@@ -155,7 +155,7 @@ public class FrConRoupa extends javax.swing.JDialog {
             int id_roupa = Integer.parseInt(textoCelula);
 
             //com o pkUsuario eu vou chamar um método de deletar no controller
-            TamanhoController controller = new TamanhoController();
+            RoupaController controller = new RoupaController();
             if (controller.deletar(id_roupa)) {
                 pesquisar();
                 JOptionPane.showMessageDialog(rootPane, "Deletado com sucesso");

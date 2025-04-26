@@ -123,16 +123,16 @@ public class FrLogin extends javax.swing.JFrame {
 
         lblBarra1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblBarra1.setText("____________________");
-        lblBarra2.add(lblBarra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        lblBarra2.add(lblBarra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("____________________");
-        lblBarra2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, -1));
+        lblBarra2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         jLabel1.setText("ou");
-        lblBarra2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 36, -1));
+        lblBarra2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 36, -1));
 
         btnCadastro.setBackground(new java.awt.Color(0, 0, 0));
         btnCadastro.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N

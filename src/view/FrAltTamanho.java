@@ -16,12 +16,19 @@ import model.Tamanho;
  */
 public class FrAltTamanho extends javax.swing.JDialog {
 
+    private int id_tamanho;
+
+    public void setPkTamanho(int id_tamanho) {
+        this.id_tamanho = id_tamanho;
+    }
+
     /**
      * Creates new form FrAltTamanho
      */
-    public FrAltTamanho(java.awt.Frame parent, boolean modal) {
+    public FrAltTamanho(java.awt.Frame parent, boolean modal, int id_tamanho) {
         super(parent, modal);
         initComponents();
+        setPkTamanho(id_tamanho);
     }
 
     /**
@@ -39,7 +46,7 @@ public class FrAltTamanho extends javax.swing.JDialog {
         edtCodigo = new javax.swing.JTextField();
         edtDescricao = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
-        btnAlterarDados = new javax.swing.JButton();
+        btnAlterarTamanhos = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         lblNome = new javax.swing.JLabel();
         edtSigla = new javax.swing.JTextField();
@@ -74,16 +81,16 @@ public class FrAltTamanho extends javax.swing.JDialog {
         lblEmail.setText("Descrição");
         jPanel1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        btnAlterarDados.setBackground(new java.awt.Color(0, 0, 0));
-        btnAlterarDados.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnAlterarDados.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterarDados.setText("Alterar senha");
-        btnAlterarDados.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlterarTamanhos.setBackground(new java.awt.Color(0, 0, 0));
+        btnAlterarTamanhos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnAlterarTamanhos.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterarTamanhos.setText("Alterar Tamanho");
+        btnAlterarTamanhos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlterarDadosMouseClicked(evt);
+                btnAlterarTamanhosMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAlterarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 140, 40));
+        jPanel1.add(btnAlterarTamanhos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 170, 40));
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
         btnCancelar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -115,7 +122,7 @@ public class FrAltTamanho extends javax.swing.JDialog {
                 btnSalvarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 140, -1));
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,23 +138,23 @@ public class FrAltTamanho extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAlterarDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMouseClicked
+    private void btnAlterarTamanhosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarTamanhosMouseClicked
         if (edtSigla.isEditable() == false) {
             edtSigla.setEditable(true);
             edtDescricao.setEditable(true);
             edtSigla.setBackground(Color.white);
             edtDescricao.setBackground(Color.white);
-            btnAlterarDados.setText("Cancelar alteração");
+            btnAlterarTamanhos.setText("Cancelar alteração");
 
         } else {
             edtSigla.setEditable(false);
             edtDescricao.setEditable(false);
             edtSigla.setBackground(Color.gray);
             edtDescricao.setBackground(Color.gray);
-            btnAlterarDados.setText("Alterar Senha");
+            btnAlterarTamanhos.setText("Alterar Senha");
 
         }
-    }//GEN-LAST:event_btnAlterarDadosMouseClicked
+    }//GEN-LAST:event_btnAlterarTamanhosMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         this.dispose();
@@ -166,11 +173,11 @@ public class FrAltTamanho extends javax.swing.JDialog {
         //conversão de String para Date
         tam.setSigla(edtSigla.getText());
         tam.setDescricao(edtDescricao.getText());
-
+        tam.setIdTamanho(id_tamanho);
         //depois passo o objeto para o controller e ele irá gravar no banco de dados
         TamanhoController controller = new TamanhoController();
 
-        if (controller.inserirTamanho(tam)) {
+        if (controller.alterarTamanho(tam)) {
             JOptionPane.showMessageDialog(null,
                     "Tamanho gravado com sucesso");
             this.dispose();
@@ -231,7 +238,7 @@ public class FrAltTamanho extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrAltTamanho dialog = new FrAltTamanho(new javax.swing.JFrame(), true);
+                FrAltTamanho dialog = new FrAltTamanho(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -244,7 +251,7 @@ public class FrAltTamanho extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterarDados;
+    private javax.swing.JButton btnAlterarTamanhos;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtCodigo;

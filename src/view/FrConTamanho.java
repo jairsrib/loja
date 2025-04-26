@@ -192,14 +192,14 @@ public void pesquisar(){
             String textoCelula = tblUsuarios.getValueAt(linhaSelecionada, 0).toString();
 
             //converter o texto da célula em inteiro
-            int pkUsuario = Integer.parseInt(textoCelula);
+            int id_tamanho = Integer.parseInt(textoCelula);
 
             //com o pkUsuario eu vou criar uma tela de
             //alteração passando o pkUsuario
 
             //Essa tela irá carregar os dados desse usuário
             //para poder alterar
-            FrAltUsuario telaAlt = new FrAltUsuario(null,rootPaneCheckingEnabled, pkUsuario);
+            FrAltTamanho telaAlt = new FrAltTamanho(null,rootPaneCheckingEnabled, id_tamanho);
 
             telaAlt.setVisible(true);
 

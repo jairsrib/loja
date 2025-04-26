@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Roupa;
 import model.Tamanho;
 import model.Usuario;
 
@@ -52,6 +53,32 @@ public class TamanhoController {
         return false;
     }
 
+    public boolean alterarTamanho(Tamanho t) {
+        String sql = "UPDATE tamanho SET sigla = ?, "
+                + " descricao = ?"
+                + " WHERE id_tamanho = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        PreparedStatement comando = null;
+
+        try {
+            comando = gerenciador.prepararComando(sql);
+
+            comando.setString(1, t.getSigla());
+            comando.setString(2, t.getDescricao());
+            comando.setInt(3, t.getIdTamanho());
+
+            comando.executeUpdate();
+
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            gerenciador.fecharConexao(comando);
+        }
+        return false;
+    }
+
     public Tamanho buscarPorPk(int id_tamanho) {
         //Guarda o sql
         String sql = "SELECT * FROM tamanho "
@@ -84,7 +111,7 @@ public class TamanhoController {
                 tam.setIdTamanho(resultado.getInt("ID"));
                 tam.setSigla(resultado.getString("Sigla"));
                 tam.setDescricao(resultado.getString("Descrição"));
-                
+
             }
 
         } catch (SQLException ex) {
@@ -96,7 +123,7 @@ public class TamanhoController {
         //retorno o usuário
         return tam;
     }
-    
+
     public List<Tamanho> consultar() {
         //Guarda o sql
         String sql = "SELECT * FROM tamanho";

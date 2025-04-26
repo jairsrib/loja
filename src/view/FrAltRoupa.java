@@ -16,17 +16,21 @@ import model.Roupa;
  */
 public class FrAltRoupa extends javax.swing.JDialog {
 
+     private int id_roupa;
+
+    public void setPkRoupa(int id_roupa) {
+        this.id_roupa = id_roupa;
+    }
     /**
      * Creates new form FrAltRoupa
      */
-    public FrAltRoupa(java.awt.Frame parent, boolean modal) {
+    public FrAltRoupa(java.awt.Frame parent, boolean modal, int id_roupa) {
         super(parent, modal);
         initComponents();
+        setPkRoupa(id_roupa);
     }
 
-    FrAltRoupa(Object object, boolean rootPaneCheckingEnabled, int id_roupa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,24 +206,33 @@ public class FrAltRoupa extends javax.swing.JDialog {
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         if (verificarCampos()) {
             gravar();
-        }
+            FrAddRoupaTamanho telaAdd = new FrAddRoupaTamanho(null, true);
+            telaAdd.setVisible(true);
+        }        
     }//GEN-LAST:event_btnSalvarMouseClicked
+    
+    
+    
+    
+    
     public void gravar() {
         //criar uma instância da classe Usuario 
         //vou preencher os campos
         Roupa rou = new Roupa();
-
         rou.setNome(edtNome.getText());
         double preco = Double.parseDouble(edtPreco.getText().replace(",", "."));
         rou.setPreco(preco);
         rou.setCor(edtCor.getText());
         rou.setDescricao(edtDescricao.getText());
+        rou.setIdRoupa(id_roupa);
+
         //depois passo o objeto para o controller e ele irá gravar no banco de dados
         RoupaController controller = new RoupaController();
+        
 
-        if (controller.inserirRoupa(rou)) {
+        if (controller.alterarRoupa(rou)) {
             JOptionPane.showMessageDialog(null,
-                    "Roupa gravada com sucesso");
+                    "Roupa alterada com sucesso");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null,
@@ -292,7 +305,7 @@ public class FrAltRoupa extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrAltRoupa dialog = new FrAltRoupa(new javax.swing.JFrame(), true);
+                FrAltRoupa dialog = new FrAltRoupa(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

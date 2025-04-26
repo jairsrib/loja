@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import model.Roupa;
 import model.Roupa_Tamanho;
 import model.Tamanho;
+import model.Usuario;
 
 /**
  *
@@ -50,6 +51,36 @@ public class RoupaController {
         } catch (SQLException e) {//caso ocorra um erro relacionado ao banco de dados
             JOptionPane.showMessageDialog(null, e.getMessage());//exibe popup com o erro
         } finally {//depois de executar o try, dando erro ou não executa o finally
+            gerenciador.fecharConexao(comando);
+        }
+        return false;
+    }
+
+    public boolean alterarRoupa(Roupa r) {
+        String sql = "UPDATE roupa SET nome = ?, "
+                + " preco = ?, "
+                + " cor = ?, "
+                + " descricao = ?"
+                + " WHERE id_roupa = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        PreparedStatement comando = null;
+
+        try {
+            comando = gerenciador.prepararComando(sql);
+
+            comando.setString(1, r.getNome());
+            comando.setDouble(2, r.getPreco());
+            comando.setString(3, r.getCor());
+            comando.setString(4, r.getDescricao());
+            comando.setInt(5, r.getIdRoupa());
+
+            comando.executeUpdate();
+
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
             gerenciador.fecharConexao(comando);
         }
         return false;
@@ -153,7 +184,7 @@ public class RoupaController {
     }
 
     public boolean deletar(int id_roupa) {
-        String sql = "DELETE FROM roupa"
+        String sql = "DELETE FROM roupa "
                 + "WHERE id_roupa = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -237,9 +268,10 @@ public class RoupaController {
         // Retorna o último ID (ou null se não houver nenhum registro)
         return ultimoId;
     }
-    
-   public List<Roupa_Tamanho> consultarTam() {
-        //Guarda o sql
+
+    public List<Roupa_Tamanho> consultarTam() {
+
+//Guarda o sql
         String sql = "SELECT * FROM roupa_tamanho";
 
         //Cria um gerenciador de conexão
@@ -264,15 +296,13 @@ public class RoupaController {
             while (resultado.next()) {
 
                 //Crio um novo usuário vazio
-                Roupa_Tamanho rou = new Roupa_Tamanho();
-
+                Roupa_Tamanho rt = new Roupa_Tamanho();
                 //Leio as informações da variável resultado e guardo no usuário
-                rou.setId_roupa(resultado.getInt("id_roupa"));
-                rou.setId_tamanho(resultado.getInt("id_tamanho"));
-                
+                rt.setId_roupa(resultado.getInt("id_roupa"));
+                rt.setId_tamanho(resultado.getInt("id_tamanho"));
 
                 //adiciono o usuário na lista
-                listaTamRoupa.add(rou);
+                listaTamRoupa.add(rt);
             }
 
         } catch (SQLException ex) {
@@ -285,6 +315,5 @@ public class RoupaController {
         //retorno a lista de usuários
         return listaTamRoupa;
     }
-   
-   
+
 }
